@@ -1,0 +1,12 @@
+/*site header v2*/
+.header-v2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: url("../assets/images/header-alt.gif");
+  background-size: 100%;
+}
+
+.header-v2 h1 {
+  color: white;
+}

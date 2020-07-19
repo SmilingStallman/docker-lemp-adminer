@@ -1,0 +1,62 @@
+version: '3.4'
+
+services:
+  php-fpm:
+    build:
+      context: ./php-fpm
+    volumes:
+      #change to root source files dir for project
+      - ./src:/var/www
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./src:/var/www/   #source code
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf   #nginx config
+      - ./nginx/sites/:/etc/nginx/sites-available   #server config
+      - ./nginx/conf.d/:/etc/nginx/conf.d   #sets upstream
+    depends_on:
+      - php-fpm
+
+  database-demo:
+    build:
+      context: ./mariadb
+    environment:
+      #change this on your own install
+      - MYSQL_ROOT_PASSWORD=changeme
+    volumes:
+      #Sample: creates publications DB, user + privleges, and populates tables
+      #remove if initializing via environment variables
+      - ./mariadb/init/demo.sql:/docker-entrypoint-initdb.d/demo.sql
+      #named volume for sql data store
+      - demo-data:/var/lib/mysql
+
+  another-database:
+    build:
+      context: ./mariadb
+    environment:
+      #change this on your own install
+      - MYSQL_ROOT_PASSWORD=changeme
+    volumes:
+      #Sample: creates publications DB, user + privleges, and populates tables
+      #remove if initializing via environment variables
+      - ./mariadb/init/sm-demo.sql:/docker-entrypoint-initdb.d/sm-demo.sql
+      #named volume for sql data store
+      - sm-demo-data:/var/lib/mysql
+
+  #DB management tool for access to DB via browser
+  adminer:
+    build:
+      context: ./adminer
+    ports:
+      - 8080:8080
+    restart: always
+
+#necessary mapping since using named volumes
+volumes:
+  demo-data:
+  sm-demo-data:

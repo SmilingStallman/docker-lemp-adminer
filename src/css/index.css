@@ -1,0 +1,42 @@
+html, body{
+    margin: 0%;
+    height: 100%;
+}
+html{
+    font-family: helvetica, arial, sans-serif;
+    font-size: 10px;
+    margin-bottom: 100px;
+}
+
+body {
+    background-color: #1e1e1e;
+    color: #999999;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+h2, h2 > a {
+     color: #32DD72;
+}
+
+h2, p{
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+h3, img{
+  margin: 0 3vw 0 3vw;
+}
+
+a {
+    color: #CCCCCC
+}
+
+section{
+  margin-top: 30px;
+}
+
+#demo-video{
+  margin: 0 auto 50px auto;
+  width: 50%;
+  text-align: center;
+}
