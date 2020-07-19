@@ -39,10 +39,10 @@ README.md
 
 # Configuration
 
-1) Clone the repo
+1) Clone the repo and change to project directory:
 
 ```
-git clone https://github.com/SmilingStallman/docker-lemp-adminer.git
+git clone https://github.com/SmilingStallman/docker-lemp-adminer.git && cd docker-lemp-adminer
 ```
 
 
@@ -106,10 +106,10 @@ docker-compose build
 ````
 2) Run via:
 ```
-docker-compose run
+docker-compose up
 
 # or to run in background
-docker-compose run
+docker-compose up -d
 ````
 
 # Use
